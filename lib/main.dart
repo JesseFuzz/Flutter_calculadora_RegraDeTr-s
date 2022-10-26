@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rule_of_three/views/main_page.dart';
 import 'views/appbar.dart';
 
 void main() {
@@ -13,8 +14,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Calculator',
-      home: MyAppBar(
-          title: 'Rule Of Three (Regra de Três)'), //prq é tão necessário?
+      home: MainPage(), //prq é tão necessário?
     );
   }
 }
