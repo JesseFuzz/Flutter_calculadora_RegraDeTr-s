@@ -23,16 +23,50 @@ class _MyHomePageState extends State<MyAppBar> {
         ],
         // title: Text(widget.title),
       ),
-      body: Center(
-        child: ButtonBar(
-          alignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Calculate'),
-            )
-          ],
-        ),
+      body: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(10.00),
+            child: TextField(
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                icon: Icon(Icons.numbers),
+                labelText: 'digite um número',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10.00),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(10.0),
+            child: TextField(
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                icon: Icon(Icons.numbers),
+                labelText: 'digite um número',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10.00),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Center(
+            child: ButtonBar(
+              alignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Calculate'),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
