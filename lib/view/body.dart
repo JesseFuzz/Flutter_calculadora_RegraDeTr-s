@@ -1,40 +1,32 @@
 import 'package:flutter/material.dart';
 
-class MyAppBar extends StatefulWidget {
-  const MyAppBar({
-    super.key,
-    required String title,
-  });
+import '../controller/calcs.dart';
+
+class MainPageBody extends StatefulWidget {
+  const MainPageBody({super.key});
+
   @override
-  State<MyAppBar> createState() => _MyHomePageState();
+  State<MainPageBody> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyAppBar> {
+class _MyHomePageState extends State<MainPageBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.calculate_sharp),
-        title: const Text('Rule of three'),
-        actions: <Widget>[
-          IconButton(icon: const Icon(Icons.history), onPressed: () {}),
-          IconButton(icon: const Icon(Icons.share), onPressed: () {})
-        ],
-        // title: Text(widget.title),
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Padding(
-                padding: EdgeInsets.all(20.00),
+                padding: const EdgeInsets.all(20.00),
                 child: SizedBox(
                   width: 150,
                   child: TextField(
+                    controller: x1,
                     keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       icon: Icon(Icons.confirmation_number),
                       labelText: "x'",
                       border: OutlineInputBorder(
@@ -47,13 +39,14 @@ class _MyHomePageState extends State<MyAppBar> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: SizedBox(
                   width: 150,
                   child: TextField(
+                    controller: y1,
                     keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.aspect_ratio),
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.yard),
                       labelText: "y'",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -68,14 +61,15 @@ class _MyHomePageState extends State<MyAppBar> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: SizedBox(
                   width: 150,
                   child: TextField(
+                    controller: x2,
                     keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       icon: Icon(Icons.wallet),
                       labelText: 'x"',
                       border: OutlineInputBorder(
@@ -88,12 +82,13 @@ class _MyHomePageState extends State<MyAppBar> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: SizedBox(
                   width: 150,
                   child: TextField(
+                    controller: y2,
                     keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       icon: Icon(Icons.text_snippet),
                       labelText: 'y"',
                       border: OutlineInputBorder(
@@ -107,12 +102,20 @@ class _MyHomePageState extends State<MyAppBar> {
               ),
             ],
           ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Center(
+              child: Text('O resultado é: $answer'),
+            ),
+          ),
           Center(
             child: ButtonBar(
               alignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    //returnRuleOfThree(x1, y1, x2);
+                  },
                   child: const Text('Calculate'),
                 )
               ],

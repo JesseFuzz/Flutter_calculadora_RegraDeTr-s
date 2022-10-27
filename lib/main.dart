@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rule_of_three/views/main_page.dart';
-import 'views/appbar.dart';
+import 'package:rule_of_three/view/main_page.dart';
 
 void main() {
   runApp(const MyApp());
