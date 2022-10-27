@@ -10,6 +10,23 @@ class MainPageBody extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MainPageBody> {
+  final x1Controller = TextEditingController();
+  final x2Controller = TextEditingController();
+  final y1Controller = TextEditingController();
+  final y2Controller = TextEditingController();
+  String resultado = '';
+
+  returnRuleOfThree() {
+    double x1 = double.parse(x1Controller.text);
+    double? x2 = double.tryParse(x2Controller.text);
+    double y1 = double.parse(y1Controller.text);
+    double? y2 = double.tryParse(y2Controller.text);
+    setState(() {
+      double res = (x2! * y1) / x1;
+      resultado = 'O resutaldo é: $res';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +41,8 @@ class _MyHomePageState extends State<MainPageBody> {
                 child: SizedBox(
                   width: 150,
                   child: TextField(
-                    controller: x1,
                     keyboardType: TextInputType.number,
+                    controller: x1Controller,
                     decoration: const InputDecoration(
                       icon: Icon(Icons.confirmation_number),
                       labelText: "x'",
@@ -43,7 +60,7 @@ class _MyHomePageState extends State<MainPageBody> {
                 child: SizedBox(
                   width: 150,
                   child: TextField(
-                    controller: y1,
+                    controller: y1Controller,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       icon: Icon(Icons.yard),
@@ -67,7 +84,7 @@ class _MyHomePageState extends State<MainPageBody> {
                 child: SizedBox(
                   width: 150,
                   child: TextField(
-                    controller: x2,
+                    controller: x2Controller,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       icon: Icon(Icons.wallet),
@@ -86,7 +103,7 @@ class _MyHomePageState extends State<MainPageBody> {
                 child: SizedBox(
                   width: 150,
                   child: TextField(
-                    controller: y2,
+                    controller: y2Controller,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       icon: Icon(Icons.text_snippet),
@@ -104,9 +121,10 @@ class _MyHomePageState extends State<MainPageBody> {
           ),
           Padding(
             padding: const EdgeInsets.all(20),
-            child: Center(
-              child: Text('O resultado é: $answer'),
-            ),
+            child: Center(child: Text(resultado)
+
+                //child: Text('O resultado é: $resultado'),
+                ),
           ),
           Center(
             child: ButtonBar(
@@ -114,7 +132,11 @@ class _MyHomePageState extends State<MainPageBody> {
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () {
-                    //returnRuleOfThree(x1, y1, x2);
+                    // print(x1Controller.text);
+                    // print(x2Controller.text);
+                    // print(y1Controller.text);
+                    // print(y2Controller.text);
+                    returnRuleOfThree();
                   },
                   child: const Text('Calculate'),
                 )
