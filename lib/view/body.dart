@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../controller/calcs.dart';
+import 'package:flutter/services.dart';
+import 'package:rule_of_three/controller/calcs.dart';
 
 class MainPageBody extends StatefulWidget {
   const MainPageBody({super.key});
@@ -16,15 +16,30 @@ class _MyHomePageState extends State<MainPageBody> {
   final y2Controller = TextEditingController();
   String resultado = '';
 
-  returnRuleOfThree() {
-    double x1 = double.parse(x1Controller.text);
-    double? x2 = double.tryParse(x2Controller.text);
-    double y1 = double.parse(y1Controller.text);
-    double? y2 = double.tryParse(y2Controller.text);
-    setState(() {
-      double res = (x2! * y1) / x1;
-      resultado = 'O resutaldo é: $res';
-    });
+  void calculateRuleOfThree() {
+    double? x1;
+    double? x2;
+    double? y1;
+    double? y2;
+    if (x1Controller.text.isNotEmpty) {
+      x1 = double.parse(x1Controller.text);
+    }
+    if (x2Controller.text.isNotEmpty) {
+      x2 = double.parse(x2Controller.text);
+    }
+    if (y1Controller.text.isNotEmpty) {
+      y1 = double.parse(y1Controller.text);
+    }
+    if (y2Controller.text.isNotEmpty) {
+      y2 = double.parse(y2Controller.text);
+    }
+    setState(
+      () {
+        resultado =
+            CalculateRuleOfThreeUsecase().call(x1: x1, x2: x2, y1: y1, y2: y2);
+        //parametro nomeado
+      },
+    );
   }
 
   @override
@@ -41,10 +56,11 @@ class _MyHomePageState extends State<MainPageBody> {
                 child: SizedBox(
                   width: 150,
                   child: TextField(
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     keyboardType: TextInputType.number,
                     controller: x1Controller,
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.confirmation_number),
+                      icon: Icon(Icons.numbers),
                       labelText: "x'",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -60,10 +76,11 @@ class _MyHomePageState extends State<MainPageBody> {
                 child: SizedBox(
                   width: 150,
                   child: TextField(
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     controller: y1Controller,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.yard),
+                      icon: Icon(Icons.numbers),
                       labelText: "y'",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -84,10 +101,11 @@ class _MyHomePageState extends State<MainPageBody> {
                 child: SizedBox(
                   width: 150,
                   child: TextField(
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     controller: x2Controller,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.wallet),
+                      icon: Icon(Icons.numbers),
                       labelText: 'x"',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -103,10 +121,11 @@ class _MyHomePageState extends State<MainPageBody> {
                 child: SizedBox(
                   width: 150,
                   child: TextField(
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     controller: y2Controller,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.text_snippet),
+                      icon: Icon(Icons.numbers),
                       labelText: 'y"',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -121,23 +140,16 @@ class _MyHomePageState extends State<MainPageBody> {
           ),
           Padding(
             padding: const EdgeInsets.all(20),
-            child: Center(child: Text(resultado)
-
-                //child: Text('O resultado é: $resultado'),
-                ),
+            child: Center(
+              child: SelectableText(resultado),
+            ),
           ),
           Center(
             child: ButtonBar(
               alignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 ElevatedButton(
-                  onPressed: () {
-                    // print(x1Controller.text);
-                    // print(x2Controller.text);
-                    // print(y1Controller.text);
-                    // print(y2Controller.text);
-                    returnRuleOfThree();
-                  },
+                  onPressed: calculateRuleOfThree,
                   child: const Text('Calculate'),
                 )
               ],

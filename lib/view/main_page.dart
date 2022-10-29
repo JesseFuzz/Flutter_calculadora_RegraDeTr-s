@@ -15,11 +15,11 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.calculate_sharp),
-        title: const Text('Rule of three'),
-        actions: <Widget>[
-          IconButton(icon: const Icon(Icons.history), onPressed: () {}),
-          IconButton(icon: const Icon(Icons.share), onPressed: () {})
-        ],
+        title: const Center(child: Text('Rule of three')),
+        // actions: <Widget>[
+        //   IconButton(icon: const Icon(Icons.history), onPressed: () {}),
+        //   IconButton(icon: const Icon(Icons.share), onPressed: () {})
+        // ],
         // title: Text(widget.title),
       ),
       body: const MainPageBody(),
