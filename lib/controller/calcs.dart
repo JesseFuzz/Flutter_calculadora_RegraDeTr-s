@@ -1,45 +1,43 @@
 class CalculateRuleOfThreeAndSave {
   String calculate({double? x1, double? x2, double? y1, double? y2}) {
-    // var lista = [];
     if (y2 == null && x2 != null && y1 != null && x1 != null) {
       double res = (x2 * y1) / x1;
       final rounded = res.toStringAsFixed(2);
-      // lista.add(rounded);
-      // print(lista);
       return 'O resultado de y" é: $rounded';
     } else if (x2 == null && y2 != null && y1 != null && x1 != null) {
       double res = (x1 * y2) / y1;
       final rounded = res.toStringAsFixed(2);
-      // lista.add(rounded);
-      // print(lista);
       return 'O resultado de x" é: $rounded';
     } else if (y1 == null && x1 != null && x2 != null && y2 != null) {
       double res = (x1 * y2) / x2;
       final rounded = res.toStringAsFixed(2);
-      // lista.add(rounded);
-      // print(lista);
       return "O resultado de y' é: $rounded";
     } else if (x1 == null && y1 != null && x2 != null && y2 != null) {
       double res = (x2 * y1) / y2;
       final rounded = res.toStringAsFixed(2);
-      // lista.add(rounded);
-      // print(lista);
       return "O resultado de x' é: $rounded";
     }
     return 'Preencha corretamente os valores!';
   }
 
-  void saveResult(String result) {
-    // var historico = {1: "5", 2: '6'};
-    // for (int i = 0; i < historico.length; i++) {
-    //   historico.;
-    // }
-
-    var historico = [];
-    historico.add(result);
+  var historico = {}; //map onde ficam os meus resultados em string
+  void saveResult(String result, String x1, String x2, String y1, String y2) {
+    historico.addAll(
+      {
+        DateTime.now().millisecond.toString(): {
+          'result': result,
+          'x1': x1,
+          'x2': x2,
+          'y1': y1,
+          'y2': y2
+        }
+      },
+    );
     print(historico);
   }
 }
+
+
 
 // import 'package:flutter/material.dart';
 
