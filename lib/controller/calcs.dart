@@ -20,19 +20,17 @@ class CalculateRuleOfThreeAndSave {
     return 'Preencha corretamente os valores!';
   }
 
-  var historico = {}; //map onde ficam os meus resultados em string
+  static var historico = {}; //map onde ficam os meus resultados em string
   void saveResult(String result, String x1, String x2, String y1, String y2) {
-    historico.addAll(
-      {
-        DateTime.now().millisecond.toString(): {
-          'result': result,
-          'x1': x1,
-          'x2': x2,
-          'y1': y1,
-          'y2': y2
-        }
-      },
-    );
+    return historico.addAll({
+      DateTime.now().millisecond.toString(): {
+        'result': result,
+        'x1': x1,
+        'x2': x2,
+        'y1': y1,
+        'y2': y2
+      }
+    });
     print(historico);
   }
 }
